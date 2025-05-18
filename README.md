@@ -91,3 +91,5 @@ GitHub Pages для хостинга статического frontend
 
 
 Современный веб-браузер (Chrome, Firefox, Edge и т.д.).
+
+Ссылка проекта:  https://salmon-04.github.io/online-shopp/
