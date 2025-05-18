@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONLINE-SHOP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+  <script>
+    if (!localStorage.getItem('isAuthenticated')) {
+      window.location.href = 'vkhod.html';
+    }
+  </script>
+  <div class="sidebar">
+    <a href="#" class="logo">ONLINE-SHOP</a>
+    <div class="menu-item">
+      <a href="#" onclick="toggleSubmenu('food')"><i class="fas fa-apple-alt"></i> Продукты питания</a>
+      <div class="submenu" id="food">
+        <a href="#" onclick="showProducts('food-bread')">Хлеб и выпечка</a>
+        <a href="#" onclick="showProducts('food-fruits')">Фрукты и овощи</a>
+        <a href="#" onclick="showProducts('food-meat')">Мясо и молочные продукты</a>
+      </div>
+    </div>
+    <div class="menu-item">
+      <a href="#" onclick="toggleSubmenu('clothing')"><i class="fas fa-tshirt"></i> Одежда</a>
+      <div class="submenu" id="clothing">
+        <a href="#" onclick="showProducts('clothing-coats')">Куртки и пальто</a>
+        <a href="#" onclick="showProducts('clothing-national')">Национальная одежда</a>
+        <a href="#" onclick="showProducts('clothing-kids-shoes')">Обувь для детей</a>
+      </div>
+    </div>
+    <div class="menu-item">
+      <a href="#" onclick="toggleSubmenu('household')"><i class="fas fa-broom"></i> Бытовая химия и товары</a>
+      <div class="submenu" id="household">
+        <a href="#" onclick="showProducts('household-cleaning')">Средства для уборки</a>
+        <a href="#" onclick="showProducts('household-dishes')">Посуда и кухонные принадлежности</a>
+        <a href="#" onclick="showProducts('household-textile')">Текстиль</a>
+      </div>
+    </div>
+    <div class="menu-item">
+      <a href="#" onclick="toggleSubmenu('electronics')"><i class="fas fa-plug"></i> Электроника и аксессуары</a>
+      <div class="submenu" id="electronics">
+        <a href="#" onclick="showProducts('electronics-phones')">Мобильные телефоны и зарядные устройства</a>
+        <a href="#" onclick="showProducts('electronics-lights')">Лампы и светильники</a>
+        <a href="#" onclick="showProducts('electronics-small')">Мелкая бытовая техника</a>
+      </div>
+    </div>
+    <div class="menu-item logout-item">
+      <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Выйти</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div id="welcome-message" class="welcome-card">
+      <h2 class="welcome-title">Добро пожаловать, Админ!</h2>
+      <p class="welcome-text">Вы успешно вошли в систему. Выберите категорию товаров из меню слева.</p>
+    </div>
+    <div id="products-container" style="display: none;">
+      <table class="products-table" id="products-table">
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Код товара</th>
+            <th>Цена</th>
+            <th>Статус</th>
+          </tr>
+          <tbody id="products-body">
+
+          </tbody>
+        </thead>
+      </table>
+      <button class="add-button" onclick="openSidebar('add')" style="margin-top: 10px;"><i class="fas fa-plus"></i> Добавить</button>
+    </div>
+  </div>
+
+  <div id="sidebar-panel" class="sidebar-panel">
+    <div class="sidebar-panel-content">
+      <div class="sidebar-header">
+        <span id="panel-title"></span>
+        <div class="sidebar-actions">
+          <i class="fas fa-edit action-icon" onclick="editProduct()" title="Редактировать"></i>
+          <i class="fas fa-trash-alt action-icon" onclick="openSidebar('delete', selectedProduct, selectedProductIndex)" title="Удалить"></i>
+          <i class="fas fa-times close" onclick="closeSidebar()"></i>
+        </div>
+      </div>
+      <div id="panel-body"></div>
+      <div id="snackbar"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="delete-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Удалить товар</h2>
+        <i class="fas fa-times close" onclick="closeModal()"></i>
+      </div>
+      <div class="modal-body">
+        <p>Вы уверены, что хотите удалить товар "<span id="product-name"></span>"? Это действие нельзя отменить.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="add-button" onclick="confirmDelete()"><i class="fas fa-check"></i> Да, удалить</button>
+        <button class="cancel-button" onclick="closeModal()"><i class="fas fa-times"></i> Отмена</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  
+</body>
+</html>

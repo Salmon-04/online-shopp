@@ -1,0 +1,186 @@
+{
+  "food-bread": [
+    {
+      "name": "Белый хлеб",
+      "sku": "bread-001",
+      "price": "2.50",
+      "status": "Активный",
+      "description": "Свежий хлеб",
+      "quantity": 50,
+      "image": "",
+      "id": "d344"
+    },
+    {
+      "name": "Булочка с корицей",
+      "sku": "bread-002",
+      "price": "1.00",
+      "status": "Неактивный",
+      "description": "Сладкая выпечка",
+      "quantity": 30,
+      "image": "",
+      "id": "2762"
+    },
+    {
+      "id": "b2c1",
+      "name": "йуйц",
+      "sku": "йцу",
+      "price": "12",
+      "status": "Активный",
+      "description": "йцу",
+      "quantity": 12,
+      "image": ""
+    }
+  ],
+  "food-fruits": [
+    {
+      "name": "Инжир свежий",
+      "sku": "fruit-001",
+      "price": "5.00",
+      "status": "Активный",
+      "description": "Сезонный фрукт",
+      "quantity": 100,
+      "image": "",
+      "id": "5e91"
+    },
+    {
+      "name": "Гранаты",
+      "sku": "fruit-002",
+      "price": "4.50",
+      "status": "Активный",
+      "description": "Полезные ягоды",
+      "quantity": 80,
+      "image": "",
+      "id": "914f"
+    }
+  ],
+  "food-meat": [
+    {
+      "name": "Говядина свежая",
+      "sku": "meat-001",
+      "price": "10.00",
+      "status": "Активный",
+      "description": "Свежая Говядина",
+      "quantity": 20,
+      "image": "",
+      "id": "9941"
+    },
+    {
+      "name": "Молоко 2.5%",
+      "sku": "milk-001",
+      "price": "1.20",
+      "status": "Неактивный",
+      "description": "Пастеризованное молоко",
+      "quantity": 150,
+      "image": "",
+      "id": "3ba0"
+    }
+  ],
+  "clothing-coats": [
+    {
+      "name": "Зимняя куртка",
+      "sku": "coat-001",
+      "price": "50.00",
+      "status": "Активный",
+      "description": "Теплая куртка",
+      "quantity": 15,
+      "image": "",
+      "id": "84ee"
+    }
+  ],
+  "clothing-national": [
+    {
+      "name": "Чакан",
+      "sku": "national-001",
+      "price": "30.00",
+      "status": "Неактивный",
+      "description": "Национальный костюм",
+      "quantity": 10,
+      "image": "",
+      "id": "0ecd"
+    }
+  ],
+  "clothing-kids-shoes": [
+    {
+      "name": "Детские ботинки",
+      "sku": "kids-shoes-001",
+      "price": "15.00",
+      "status": "Активный",
+      "description": "Удобная обувь",
+      "quantity": 40,
+      "image": "",
+      "id": "98f1"
+    }
+  ],
+  "household-cleaning": [
+    {
+      "name": "Универсальный очиститель",
+      "sku": "clean-001",
+      "price": "3.00",
+      "status": "Активный",
+      "description": "Для всех поверхностей",
+      "quantity": 60,
+      "image": "",
+      "id": "b38a"
+    }
+  ],
+  "household-dishes": [
+    {
+      "name": "Набор тарелок",
+      "sku": "dishes-001",
+      "price": "20.00",
+      "status": "Неактивный",
+      "description": "Керамический набор",
+      "quantity": 25,
+      "image": "",
+      "id": "8db4"
+    }
+  ],
+  "household-textile": [
+    {
+      "name": "Постельное белье",
+      "sku": "textile-001",
+      "price": "25.00",
+      "status": "Активный",
+      "description": "Хлопок",
+      "quantity": 30,
+      "image": "",
+      "id": "6a8e"
+    }
+  ],
+  "electronics-phones": [
+    {
+      "name": "Смартфон X",
+      "sku": "phone-001",
+      "price": "200.00",
+      "status": "Активный",
+      "description": "Мощный смартфон",
+      "quantity": 5,
+      "image": "",
+      "id": "640e"
+    }
+  ],
+  "electronics-lights": [
+    {
+      "name": "LED лампа",
+      "sku": "light-001",
+      "price": "5.00",
+      "status": "Неактивный",
+      "description": "Энергоэффективная",
+      "quantity": 70,
+      "image": "",
+      "id": "6a39"
+    }
+  ],
+  "electronics-small": [
+    {
+      "name": "Электрочайник",
+      "sku": "small-001",
+      "price": "15.00",
+      "status": "Активный",
+      "description": "Быстрый нагрев",
+      "quantity": 20,
+      "image": "",
+      "id": "e700"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Редактировать товар</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">SHOPPING MALL</div>
+    <div class="menu-item">
+      <a href="#" onclick="toggleSubmenu('food')"><i class="fas fa-apple-alt"></i> Продукты питания</a>
+      <div class="submenu" id="food">
+        <a href="#" onclick="showProducts('food-bread')">Хлеб и выпечка</a>
+        <a href="#" onclick="showProducts('food-fruits')">Фрукты и овощи</a>
+        <a href="#" onclick="showProducts('food-meat')">Мясо и молочные продукты</a>
+      </div>
+    </div>
+    <div class="menu-item">
+      <a href="#" onclick="toggleSubmenu('clothing')"><i class="fas fa-tshirt"></i> Одежда</a>
+      <div class="submenu" id="clothing">
+        <a href="#" onclick="showProducts('clothing-coats')">Куртки и пальто</a>
+        <a href="#" onclick="showProducts('clothing-national')">Национальная одежда</a>
+        <a href="#" onclick="showProducts('clothing-kids-shoes')">Обувь для детей</a>
+      </div>
+    </div>
+    <div class="menu-item">
+      <a href="#" onclick="toggleSubmenu('household')"><i class="fas fa-broom"></i> Бытовая химия и товары</a>
+      <div class="submenu" id="household">
+        <a href="#" onclick="showProducts('household-cleaning')">Средства для уборки</a>
+        <a href="#" onclick="showProducts('household-dishes')">Посуда и кухонные принадлежности</a>
+        <a href="#" onclick="showProducts('household-textile')">Текстиль</a>
+      </div>
+    </div>
+    <div class="menu-item">
+      <a href="#" onclick="toggleSubmenu('electronics')"><i class="fas fa-plug"></i> Электроника и аксессуары</a>
+      <div class="submenu" id="electronics">
+        <a href="#" onclick="showProducts('electronics-phones')">Мобильные телефоны и зарядные устройства</a>
+        <a href="#" onclick="showProducts('electronics-lights')">Лампы и светильники</a>
+        <a href="#" onclick="showProducts('electronics-small')">Мелкая бытовая техника</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <h1>Редактировать товар</h1>
+    <div id="edit-content"></div>
+    <div id="snackbar"></div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const category = urlParams.get('category');
+      const index = parseInt(urlParams.get('index'), 10);
+      const product = productsData[category][index];
+
+      const editContent = document.getElementById('edit-content');
+      editContent.innerHTML = `
+        <form id="edit-product-form" class="add-form">
+          <div class="form-card">
+            <div class="form-group">
+              <label>Название</label>
+              <input type="text" name="name" value="${product.name}" required>
+            </div>
+            <div class="form-group">
+              <label>Код товара</label>
+              <input type="text" name="sku" value="${product.sku}" required>
+            </div>
+            <div class="form-group">
+              <label>Активность товара</label>
+              <label class="switch">
+                <input type="checkbox" name="status" ${product.status === 'Активный' ? 'checked' : ''}>
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="form-group">
+              <label>Описание</label>
+              <textarea name="description" required>${product.description || ''}</textarea>
+            </div>
+            <div class="form-group">
+              <label>Цена</label>
+              <input type="number" step="0.01" name="price" value="${product.price}" required>
+            </div>
+            <div class="form-group">
+              <Brainstorming>Количество</label>
+              <input type="number" name="quantity" value="${product.quantity}" required>
+            </div>
+            <div class="form-group">
+              <label>Изображение</label>
+              <div class="file-upload">
+                <input type="file" name="image" accept="image/*" id="image-upload">
+                <label for="image-upload" class="file-label"><i class="fas fa-upload"></i> Выберите файл</label>
+                <div class="image-preview" id="image-preview"></div>
+              </div>
+            </div>
+          </div>
+          <div class="button-group">
+            <button type="submit" class="add-button"><i class="fas fa-save"></i> Сохранить</button>
+            <button type="button" class="cancel-button" onclick="window.location.href='index.html'"><i class="fas fa-times"></i> Отмена</button>
+          </div>
+        </form>
+      `;
+
+      document.getElementById('edit-product-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const form = this;
+        const name = form.querySelector('[name="name"]').value.trim();
+        const sku = form.querySelector('[name="sku"]').value.trim();
+        const price = form.querySelector('[name="price"]').value.trim();
+        const quantity = form.querySelector('[name="quantity"]').value.trim();
+        const description = form.querySelector('[name="description"]').value.trim();
+
+        if (!name || !sku || !price || !quantity || !description) {
+          showSnackbar('Заполните обязательные поля', 'error');
+          return;
+        }
+
+        const updatedProduct = {
+          name: name,
+          sku: sku,
+          price: price,
+          status: form.querySelector('[name="status"]').checked ? 'Активный' : 'Неактивный',
+          description: description,
+          quantity: quantity
+        };
+        productsData[category][index] = updatedProduct;
+        showSnackbar('Товар успешно сохранён', 'success');
+        setTimeout(() => window.location.href = 'index.html', 2000);
+      });
+
+      document.getElementById('image-upload').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const preview = document.getElementById('image-preview');
+        preview.innerHTML = '';
+        if (file && file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            preview.innerHTML = `<img src="${e.target.result}" alt="Preview" class "preview-image"><i class="fas fa-times remove-image" onclick="removeImage(this)"></i>`;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+
+    function removeImage(element) {
+      const preview = element.parentElement;
+      preview.innerHTML = '';
+      document.getElementById('image-upload').value = '';
+    }
+
+    function showSnackbar(message, type) {
+      const snackbar = document.getElementById('snackbar');
+      snackbar.textContent = message;
+      snackbar.className = 'show ' + type;
+      setTimeout(() => { snackbar.className = snackbar.className.replace('show', ''); }, 3000);
+    }
+  </script>
+</body>
+</html>
