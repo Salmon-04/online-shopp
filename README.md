@@ -92,4 +92,6 @@ GitHub Pages для хостинга статического frontend
 
 Современный веб-браузер (Chrome, Firefox, Edge и т.д.).
 
+Сначало нужно запустить json-server чтобы API-запросы работали корректно 
+
 Ссылка проекта:  https://salmon-04.github.io/online-shopp/
